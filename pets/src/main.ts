@@ -19,12 +19,14 @@ const gerarImagensAletaorias = () => {
 
 const botaoLike = document.querySelector(".fa-heart") as HTMLButtonElement
 
+const addEremoveClasses = (classe1: string, classe2: string) => {
+  botaoLike.classList.add(classe1)
+  botaoLike.classList.remove(classe2)
+}
 const botaoDaCorCurtir = () => {
-  botaoLike.classList.add("iDaCorRed")
-  botaoLike.classList.remove("iDaCorBlack")
+  addEremoveClasses("iDaCorRed", "iDaCorBlack");
   setTimeout(() => {
-    botaoLike.classList.add("iDaCorBlack")
-    botaoLike.classList.remove("iDaCorRed")
+    addEremoveClasses("iDaCorBlack","iDaCorRed");
   }, 1000);
 }
 
