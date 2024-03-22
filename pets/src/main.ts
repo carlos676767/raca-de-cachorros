@@ -20,9 +20,11 @@ const gerarImagensAletaorias = () => {
 const botaoLike = document.querySelector(".fa-heart") as HTMLButtonElement
 
 const botaoDaCorCurtir = () => {
-  botaoLike.style.color = "red"
+  botaoLike.classList.add("iDaCorRed")
+  botaoLike.classList.remove("iDaCorBlack")
   setTimeout(() => {
-    botaoLike.style.color = "black"
+    botaoLike.classList.add("iDaCorBlack")
+    botaoLike.classList.remove("iDaCorRed")
   }, 1000);
 }
 
