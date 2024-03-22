@@ -9,9 +9,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  align-items: center;
+  margin-top: 50px;
 }
 
+img{
+  border: 1px solid black;
+}
 .cat-image {
   text-align: center;
   margin-bottom: 20px;
@@ -71,25 +75,33 @@ button {
 }
 
 
-.box {
-  width: 100px;
-  height: 100px;
-  background-color: blue;
-  position: relative;
-  animation: slideAndFade 2s ease forwards;
+.like-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4267B2;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-@keyframes slideAndFade {
-  0% {
-      opacity: 0;
-      transform: translateX(-100px);
-  }
-  50% {
-      opacity: 1;
-  }
-  100% {
-      opacity: 0.5;
-      transform: translateX(200px);
-      height: 0;
-  }
+.like-button:hover {
+  transform: scale(1.1);
+}
+
+.like-icon {
+  margin-right: 5px;
+}
+
+.like-container {
+  position: relative;
+}
+
+.likeAul {
+  color: #4267B2;
+}
+
+.likeBlack {
+  color: black;
 }
