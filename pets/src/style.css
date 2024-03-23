@@ -230,6 +230,11 @@ select, option{
   color: black;
 }
 
+.esconder{
+  display: none;
+}
+
+
 input{
   border: none;
   outline: none;

@@ -84,6 +84,7 @@ const filhaDiv = document.querySelector(".exibir") as HTMLDivElement
 
 const mostrarDiv = () => {
   filhaDiv.style.display = "block"
+  esconderDiv(div,"none");
 }
 
 const obterImagem = (gif: string) => {
@@ -193,6 +194,11 @@ const mensagemVazio = () => {
   });
 }
 
+
+const esconderDiv = (div: HTMLElement,mostrar: string) => {
+  div.style.display = mostrar
+}
+
 const pesquisaRaca = document.getElementById("raca") as HTMLInputElement
 const botaoRaca = document.querySelector(".fa-magnifying-glass") as HTMLElement
 const buscarPorRaca = () => {
@@ -204,16 +210,23 @@ const buscarPorRaca = () => {
     fetch(`https://api.thedogapi.com/v1/breeds/search?q=${pesquisaRaca.value}&api_key=live_rkcW5vmQhvnllHkvPB59s2nVrSuajzBGVpSf1bAdgv3lUiLMXOXeDbJU70yjpSLx`)
     .then(response => response.json())
     .then(data => {
-      const {image} = data[0]
+      const {image, name, weight, life_span, height} = data[0]
       divCachorros.src = image.url
+      informacoesCachorro.innerHTML = `<i class="fa-solid fa-dog"></i> ${name} <br>
+      <i class="fa-solid fa-ruler"></i> ${weight.metric} <br> <i class="fa-solid fa-heart-pulse"></i> ${life_span} <br>
+       <i class="fa-solid fa-weight-scale"></i> ${height.metric}
+      `
     })
     .catch(erro => {
       console.error(erro)
     })
   }
 }
-
+const div = document.querySelector(".esconder") as HTMLDivElement
 botaoRaca.addEventListener("click", () => {
-
-  buscarPorRaca()
+  buscarPorRaca();
+  esconderDiv(div,"block");
+  esconderImagem();
+  ocultarDiv()
+  esconderDiv(filhaDiv, "none")
 })
