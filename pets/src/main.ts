@@ -87,10 +87,18 @@ const mostrarDiv = () => {
 }
 
 const obterImagem = (gif: string) => {
-  const iframe = document.createElement("img") as HTMLImageElement
-  iframe.src = gif
-  iframe.id = "imagem"
-  filhaDiv.appendChild(iframe)
+  const iframe = document.createElement("img") as HTMLImageElement;
+  iframe.src = gif;
+  iframe.id = "imagem";
+  filhaDiv.appendChild(iframe);
+}
+
+
+
+
+const ocultarDiv = () => {
+  const divImagens = document.querySelector(".imagens") as HTMLDivElement;
+  divImagens.style.display = "none";
 }
 
 const obterGifsAnimais = () => {
@@ -99,9 +107,12 @@ const obterGifsAnimais = () => {
   .then(data => {
     data.data.forEach((elemento: any) => {
       obterImagem(elemento.images.original.url)
+      ocultarDiv();
     });
   })
 }
+
+
 
 
 const video = document.querySelector(".fa-video") as HTMLElement;
@@ -143,18 +154,31 @@ obterRacasPets();
 
 
 
-const botaoDarkMode = document.getElementById("dark-mode-toggle") as HTMLInputElement
+const botaoDarkMode = document.getElementById("dark-mode-toggle") as HTMLInputElement;
 botaoDarkMode.addEventListener("change", () => {
   if (botaoDarkMode.checked) {
-    addEremoveClasses(document.body, "dark-mode", "white-mode")
-    localStorage.setItem("darkmode", "dark-mode")
-  }else{
-    localStorage.setItem("darkmode", "white-mode")
-    addEremoveClasses(document.body,"white-mode", "dark-mode")
+    addEremoveClasses(document.body, "dark-mode", "white-mode");
+    localStorage.setItem("darkmode", "dark-mode");
+  } else {
+    localStorage.setItem("darkmode", "white-mode");
+    addEremoveClasses(document.body, "white-mode", "dark-mode");
   }
-})
+});
 
+const valorCheckado = (valor: boolean) => {
+  botaoDarkMode.checked = valor;
+};
 
-const recuperarChaveMode = localStorage.getItem("darkmode")
-console.log(recuperarChaveMode);
+const recuperarValorDarkMode = () => {
+  const recuperarChaveMode = localStorage.getItem("darkmode");
+  if (recuperarChaveMode === "dark-mode") {
+    addEremoveClasses(document.body, "dark-mode", "white-mode");
+    valorCheckado(true);
+  } else {
+    addEremoveClasses(document.body, "white-mode", "dark-mode");
+    valorCheckado(false);
+  }
+};
+
+recuperarValorDarkMode();
 
