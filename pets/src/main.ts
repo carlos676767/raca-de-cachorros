@@ -104,14 +104,39 @@ const obterGifsAnimais = () => {
 }
 
 
-const video = document.querySelector(".fa-video") as HTMLElement
+const video = document.querySelector(".fa-video") as HTMLElement;
 const esconderImagem = () => {
-  imagem.style.display = "none"
-}
+  imagem.style.display = "none";
+};
 
 video.addEventListener("click", () => {
-  esconderImagem()
-  obterGifsAnimais()
-  mostrarDiv()
-})
+  esconderImagem();
+  obterGifsAnimais();
+  mostrarDiv();
+});
 
+
+const select = document.querySelector("select") as HTMLSelectElement
+
+const criarOption = (dados: string) => {
+  const option = document.createElement("option") as HTMLOptionElement
+  option.innerHTML = dados
+  select.appendChild(option)
+  console.log(select);
+}
+
+const obterRacasPets = () => {
+  fetch("https://api.thedogapi.com/v1/breeds")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((especies: any) => {
+        const { name } = especies;
+        criarOption(name)
+      });
+    })
+    .then((erro) => {
+      console.log(erro);
+    });
+};
+
+obterRacasPets();
