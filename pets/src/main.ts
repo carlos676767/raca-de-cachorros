@@ -140,3 +140,21 @@ const obterRacasPets = () => {
 };
 
 obterRacasPets();
+
+
+
+const botaoDarkMode = document.getElementById("dark-mode-toggle") as HTMLInputElement
+botaoDarkMode.addEventListener("change", () => {
+  if (botaoDarkMode.checked) {
+    addEremoveClasses(document.body, "dark-mode", "white-mode")
+    localStorage.setItem("darkmode", "dark-mode")
+  }else{
+    localStorage.setItem("darkmode", "white-mode")
+    addEremoveClasses(document.body,"white-mode", "dark-mode")
+  }
+})
+
+
+const recuperarChaveMode = localStorage.getItem("darkmode")
+console.log(recuperarChaveMode);
+
