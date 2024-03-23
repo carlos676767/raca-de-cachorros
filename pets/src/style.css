@@ -215,3 +215,22 @@ select, option{
   outline: none;
 }
 
+.inpuText{
+  width: 100px;
+}
+
+.label{
+  background-color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.fa-magnifying-glass{
+  color: black;
+}
+
+input{
+  border: none;
+  outline: none;
+}

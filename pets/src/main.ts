@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 
 const imagem = document.getElementById("img") as HTMLImageElement;
 const criarImagem = (img: string) => {
@@ -9,7 +10,6 @@ const gerarImagensAletaorias = () => {
   fetch("https://api.thecatapi.com/v1/images/search?api_key=live_rkcW5vmQhvnllHkvPB59s2nVrSuajzBGVpSf1bAdgv3lUiLMXOXeDbJU70yjpSLx&limit=50" )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       data.forEach((elemento: any) => {
         const {url} = elemento;
         criarImagem(url);
@@ -94,8 +94,6 @@ const obterImagem = (gif: string) => {
 }
 
 
-
-
 const ocultarDiv = () => {
   const divImagens = document.querySelector(".imagens") as HTMLDivElement;
   divImagens.style.display = "none";
@@ -112,9 +110,6 @@ const obterGifsAnimais = () => {
   })
 }
 
-
-
-
 const video = document.querySelector(".fa-video") as HTMLElement;
 const esconderImagem = () => {
   imagem.style.display = "none";
@@ -126,14 +121,12 @@ video.addEventListener("click", () => {
   mostrarDiv();
 });
 
-
 const select = document.querySelector("select") as HTMLSelectElement
-
 const criarOption = (dados: string) => {
   const option = document.createElement("option") as HTMLOptionElement
   option.innerHTML = dados
   select.appendChild(option)
-  console.log(select);
+  
 }
 
 const obterRacasPets = () => {
@@ -151,8 +144,6 @@ const obterRacasPets = () => {
 };
 
 obterRacasPets();
-
-
 
 const botaoDarkMode = document.getElementById("dark-mode-toggle") as HTMLInputElement;
 botaoDarkMode.addEventListener("change", () => {
@@ -182,3 +173,38 @@ const recuperarValorDarkMode = () => {
 
 recuperarValorDarkMode();
 
+const reload = document.querySelector(".fa-rotate-right") as HTMLElement
+reload.addEventListener("click", () => {
+  location.reload()
+})
+
+
+const mensagemVazio = () => {
+  swal({
+    title: "Campo Vazio!",
+    text: "Por favor, preencha todos os campos.",
+    icon: "warning",
+  });
+}
+
+const pesquisaRaca = document.getElementById("raca") as HTMLInputElement
+const botaoRaca = document.querySelector(".fa-magnifying-glass") as HTMLElement
+const buscarPorRaca = () => {
+  if (pesquisaRaca.value === "") {
+    mensagemVazio();
+  }else{
+    fetch(`https://api.thedogapi.com/v1/breeds/search?q=${pesquisaRaca.value}&api_key=live_rkcW5vmQhvnllHkvPB59s2nVrSuajzBGVpSf1bAdgv3lUiLMXOXeDbJU70yjpSLx`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(erro => {
+      console.error(erro)
+    })
+  }
+}
+
+botaoRaca.addEventListener("click", () => {
+
+  buscarPorRaca()
+})
