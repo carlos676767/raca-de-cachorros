@@ -1,10 +1,10 @@
 
-const imagem = document.querySelector("img") as HTMLImageElement;
+const imagem = document.getElementById("img") as HTMLImageElement;
 const criarImagem = (img: string) => {
   imagem.src = img
 }
 
-let receber
+
 const gerarImagensAletaorias = () => {
   fetch("https://api.thecatapi.com/v1/images/search?api_key=live_rkcW5vmQhvnllHkvPB59s2nVrSuajzBGVpSf1bAdgv3lUiLMXOXeDbJU70yjpSLx&limit=50" )
     .then((response) => response.json())
@@ -12,7 +12,6 @@ const gerarImagensAletaorias = () => {
       console.log(data);
       data.forEach((elemento: any) => {
         const {url} = elemento;
-        receber = url
         criarImagem(url);
       });
     });
@@ -70,7 +69,7 @@ const botaoDownload = document.querySelector(".fa-download") as HTMLElement
 
 const donwloadImagem = () => {
   const a = document.createElement("a") as HTMLAnchorElement
-  a.href = 
+  a.href = imagem.src
   a.download = imagem.src
   a.type = "application.jpg"
   a.click()
@@ -79,3 +78,40 @@ const donwloadImagem = () => {
 botaoDownload.addEventListener("click", () => {
   donwloadImagem()
 })
+
+
+const filhaDiv = document.querySelector(".exibir") as HTMLDivElement
+
+const mostrarDiv = () => {
+  filhaDiv.style.display = "block"
+}
+
+const obterImagem = (gif: string) => {
+  const iframe = document.createElement("img") as HTMLImageElement
+  iframe.src = gif
+  iframe.id = "imagem"
+  filhaDiv.appendChild(iframe)
+}
+
+const obterGifsAnimais = () => {
+  fetch("https://api.giphy.com/v1/gifs/search?q=dogs&api_key=hXMCvAWd5fNhch64um0QEhDPUQ7xkK9R&limitI&limit=50&tag=animal")
+  .then(response => response.json())
+  .then(data => {
+    data.data.forEach((elemento: any) => {
+      obterImagem(elemento.images.original.url)
+    });
+  })
+}
+
+
+const video = document.querySelector(".fa-video") as HTMLElement
+const esconderImagem = () => {
+  imagem.style.display = "none"
+}
+
+video.addEventListener("click", () => {
+  esconderImagem()
+  obterGifsAnimais()
+  mostrarDiv()
+})
+

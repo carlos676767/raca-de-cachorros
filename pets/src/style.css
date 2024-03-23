@@ -107,6 +107,14 @@ img{
   color: black;
 }
 
+.exibir{
+  display: none;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  overflow: auto;
+}
+
 
 
 ul, li{
