@@ -215,6 +215,11 @@ select, option{
   outline: none;
 }
 
+select{
+  padding: 7px;
+  border-radius: 5px;
+}
+
 .inpuText{
   width: 100px;
 }
@@ -238,4 +243,12 @@ select, option{
 input{
   border: none;
   outline: none;
+}
+
+.estrelaCorAmarela {
+  color: yellow;
+}
+
+.estrelaCorWhite {
+  color: white;
 }

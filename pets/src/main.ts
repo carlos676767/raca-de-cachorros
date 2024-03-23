@@ -230,3 +230,15 @@ botaoRaca.addEventListener("click", () => {
   ocultarDiv()
   esconderDiv(filhaDiv, "none")
 })
+
+const estrela = document.querySelector(".fa-star") as HTMLElement
+const estrelaDeUmaCor = () => {
+  addEremoveClasses(estrela,"estrelaCorAmarela", "estrelaCorWhite")
+  setTimeout(() => {
+    addEremoveClasses(estrela,"estrelaCorWhite","estrelaCorAmarela")
+  }, 1000);
+}
+
+estrela.addEventListener("click", () =>{
+  estrelaDeUmaCor()
+})
