@@ -99,6 +99,13 @@ const ocultarDiv = () => {
   divImagens.style.display = "none";
 }
 
+const mostrarDivInformacoeCachorro = () => {
+  const card = document.querySelector(".card") as HTMLDivElement
+  console.log(card);
+}
+
+mostrarDivInformacoeCachorro()
+
 const obterGifsAnimais = () => {
   fetch("https://api.giphy.com/v1/gifs/search?q=dogs&api_key=hXMCvAWd5fNhch64um0QEhDPUQ7xkK9R&limitI&limit=50&tag=animal")
   .then(response => response.json())
@@ -126,7 +133,6 @@ const criarOption = (dados: string) => {
   const option = document.createElement("option") as HTMLOptionElement
   option.innerHTML = dados
   select.appendChild(option)
-  
 }
 
 const obterRacasPets = () => {
@@ -193,10 +199,13 @@ const buscarPorRaca = () => {
   if (pesquisaRaca.value === "") {
     mensagemVazio();
   }else{
+    const divCachorros = document.getElementById("mostrarCachorro") as HTMLImageElement
+    const informacoesCachorro = document.querySelector(".card-text") as HTMLParagraphElement
     fetch(`https://api.thedogapi.com/v1/breeds/search?q=${pesquisaRaca.value}&api_key=live_rkcW5vmQhvnllHkvPB59s2nVrSuajzBGVpSf1bAdgv3lUiLMXOXeDbJU70yjpSLx`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      const {image} = data[0]
+      divCachorros.src = image.url
     })
     .catch(erro => {
       console.error(erro)
