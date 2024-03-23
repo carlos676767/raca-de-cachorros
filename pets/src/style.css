@@ -5,26 +5,35 @@ body {
   background-color: #f0f0f0;
 }
 
-.container {
+main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  margin-top: 50px;
+  height: 100vh;
 }
 
-img{
-  border: 1px solid black;
-}
-.cat-image {
-  text-align: center;
-  margin-bottom: 20px;
+.filha{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  padding: 25px;
 }
 
-.cat-image img {
-  max-width: 100%;
-  border-radius: 10px;
-  width: 200px;
+li{
+  display: flex;
+  margin-left: 2px;
+}
+
+
+.inputs{
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.inputs i{
+  margin-left: 5px;
 }
 
 .buttons {
@@ -53,18 +62,10 @@ button {
 }
 
 
-.search-input {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-right: 5px;
-  width: 200px;
-}
 
-.favorite-btn {
-  background-color: #ff9800;
+img{
+  width: 300px;
 }
-
 
 .iDaCorRed {
   color: red;
@@ -104,4 +105,22 @@ button {
 
 .likeBlack {
   color: black;
+}
+
+
+
+ul, li{
+  list-style: none;
+  display: inline-block;
+}
+
+i{
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+
+i:hover{
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
 }

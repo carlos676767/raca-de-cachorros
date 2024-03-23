@@ -1,10 +1,10 @@
 
-
+const imagem = document.querySelector("img") as HTMLImageElement;
 const criarImagem = (img: string) => {
-  const imagem = document.querySelector("img") as HTMLImageElement;
   imagem.src = img
 }
 
+let receber
 const gerarImagensAletaorias = () => {
   fetch("https://api.thecatapi.com/v1/images/search?api_key=live_rkcW5vmQhvnllHkvPB59s2nVrSuajzBGVpSf1bAdgv3lUiLMXOXeDbJU70yjpSLx&limit=50" )
     .then((response) => response.json())
@@ -12,6 +12,7 @@ const gerarImagensAletaorias = () => {
       console.log(data);
       data.forEach((elemento: any) => {
         const {url} = elemento;
+        receber = url
         criarImagem(url);
       });
     });
@@ -37,10 +38,44 @@ botaoLike.addEventListener("click", () => {
 })
 
 const botaoGostei = document.querySelector(".fa-thumbs-up") as HTMLElement
-botaoGostei.addEventListener("click", () => {
-  addEremoveClasses(botaoGostei, "likeAul", "likeBlack")
+
+const AlterarEstadoBotaoGostei = () => {
+  addEremoveClasses(botaoGostei, "likeAul", "likeBlack");
   setTimeout(() => {
-    addEremoveClasses(botaoGostei,"likeBlack", "likeAul")
+    addEremoveClasses(botaoGostei, "likeBlack", "likeAul");
   }, 1000);
+};
+
+
+botaoGostei.addEventListener("click", () => {
+  AlterarEstadoBotaoGostei()
 })
 
+
+
+const botaoDeslike = document.querySelector(".fa-thumbs-down") as HTMLElement
+const alterarEstadoBotaoDeslike = () => {
+  addEremoveClasses(botaoDeslike,"iDaCorRed", "iDaCorBlack");
+  setTimeout(() => {
+    addEremoveClasses(botaoDeslike,"iDaCorBlack","iDaCorRed");
+  }, 1000);
+};
+
+botaoDeslike.addEventListener("click", () => {
+  alterarEstadoBotaoDeslike()
+})
+
+
+const botaoDownload = document.querySelector(".fa-download") as HTMLElement
+
+const donwloadImagem = () => {
+  const a = document.createElement("a") as HTMLAnchorElement
+  a.href = 
+  a.download = imagem.src
+  a.type = "application.jpg"
+  a.click()
+}
+
+botaoDownload.addEventListener("click", () => {
+  donwloadImagem()
+})
